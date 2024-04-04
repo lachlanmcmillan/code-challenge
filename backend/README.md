@@ -2,7 +2,7 @@
 
 Your task is to produce a report of our top rated investors.
 Using the provided [transaction file](src/transaction_history.json) parse the data and weigh each individual transaction against
-the weight table, adding the weights and total number of shares.
+the weight table, adding the weights and calculating the total number of shares.
 The data should then be returned to the console in a table sorted by weight descending (largest weight first).
 
 Note: the weight table is in order of precedence and all rules are mutually exclusive (one weight value per transaction)

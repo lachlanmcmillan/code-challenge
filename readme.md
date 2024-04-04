@@ -4,6 +4,6 @@
 
 __Please don't use A.I__
 
-- Fork this repository and prepare your solutions in the approriate folders.
+- Fork this repository and prepare your solutions in the appropriate folders.
 - Answer the questions in the QUESTIONS.md
 - Email us back with a link to your attempt.
