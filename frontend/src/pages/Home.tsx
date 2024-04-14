@@ -1,6 +1,24 @@
+import { useState, useEffect } from 'react';
+import { Campaign, getCampaigns } from '../campaignAPI';
 import Hero from "../components/Hero";
 
 const Home = () => {
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+
+  const refreshCampaigns = async () => {
+    const { data, error } = await getCampaigns();
+    if (error) {
+      // todo handle error
+    } else {
+      console.log({ data });
+      setCampaigns(data!);
+    }
+  }
+
+  useEffect(() => {
+    refreshCampaigns();
+  }, []);
+
   return (
     <>
       <Hero />
