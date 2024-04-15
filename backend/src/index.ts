@@ -13,11 +13,13 @@ interface TransactionHistoryItem {
   status: TransactionTypes;
 }
 
-interface TransactionHistoryItemWeighted {
+interface TransactionHistoryItemWeighted extends TransactionHistoryItem {
+  weight: number;
+}
+
+interface AggregateWeight {
   name: string;
-  numberOfShares: number;
-  dateOfPurchase: number;
-  status: TransactionTypes;
+  totalShares: number;
   weight: number;
 }
 
@@ -32,7 +34,15 @@ const main = () => {
   const dateOfReport = (new Date()).getTime();
 
   const itemsUnparsed: any[] = JSON.parse(data);
-  const items: TransactionHistoryItem[] = itemsUnparsed.map(parseTransactionHistoryItem);
+  const items: TransactionHistoryItemWeighted[] = itemsUnparsed
+    .map(parseTransactionHistoryItem)
+    .map(item => ({ 
+      ...item, 
+      weight: calculateItemWeight(item, dateOfReport) 
+    }))
+
+  const aggregatedWeights = aggregateItemsByName(items)
+  console.table(aggregatedWeights);
 };
 
 export const parseTransactionHistoryItem = (item: any): TransactionHistoryItem => {
@@ -84,6 +94,35 @@ export const calculateItemWeight = (item: TransactionHistoryItem, dateOfReport: 
   }
 
   throw new Error("item STATUS unrecognised");
+}
+
+const aggregateItemsByName = (items: TransactionHistoryItemWeighted[]) => {
+  const mapOfNames: Record<string, AggregateWeight> = {};
+
+  items.forEach(item => {
+    const { name } = item;
+
+    if (name in mapOfNames) {
+      mapOfNames[name].totalShares += item.numberOfShares;
+      mapOfNames[name].weight += item.weight;
+    } else {
+      // add new entry
+      mapOfNames[name] = {
+        name,
+        totalShares: item.numberOfShares,
+        weight: item.weight
+      };
+    }
+  });
+
+  const table = Object.values(mapOfNames)
+    .sort((a, b) => {
+      if (a.weight > b.weight) return -1;
+      if (a.weight < b.weight) return 1;
+      else return 0;
+    })
+
+  return table;
 }
 
 main();
