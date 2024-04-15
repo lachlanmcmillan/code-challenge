@@ -22,17 +22,17 @@ interface TransactionHistoryItemWeighted {
 }
 
 const FILENAME = "./src/transaction_history.json";
+const DAYS_IN_SIX_MONTHS = 180;
+const SIX_MONTHS_MILLISECONDS = DAYS_IN_SIX_MONTHS * 24 * 60 * 60 * 1000;
 
 const main = () => {
   const data = fs.readFileSync("./src/transaction_history.json", "utf-8");
 
   // Your code here
+  const dateOfReport = (new Date()).getTime();
 
   const itemsUnparsed: any[] = JSON.parse(data);
   const items: TransactionHistoryItem[] = itemsUnparsed.map(parseTransactionHistoryItem);
-
-  const largeItems = items.filter(x => x.numberOfShares > 1000);
-  console.log(largeItems);
 };
 
 export const parseTransactionHistoryItem = (item: any): TransactionHistoryItem => {
@@ -50,7 +50,7 @@ export const parseTransactionHistoryItem = (item: any): TransactionHistoryItem =
     throw new Error(`invalid item date ${item.dateOfPurchase}`);
   }
 
-  // todo check status
+  // todo check status is valid
 
   return {
     name: item.name,
@@ -60,7 +60,7 @@ export const parseTransactionHistoryItem = (item: any): TransactionHistoryItem =
   }
 }
 
-export const calculateItemWeight = (item: TransactionHistoryItem) => {
+export const calculateItemWeight = (item: TransactionHistoryItem, dateOfReport: number): number => {
   if (item.status === TransactionTypes.REFUND) {
     return -1;
   }
@@ -70,8 +70,11 @@ export const calculateItemWeight = (item: TransactionHistoryItem) => {
   }
 
   if (item.status === TransactionTypes.PURCHASED) {
-    // todo date of purchase
-    // if (item.dateOfPurchase > )
+
+    const timeElapsedSincePurchase = dateOfReport - item.dateOfPurchase;
+    if (timeElapsedSincePurchase < SIX_MONTHS_MILLISECONDS) {
+      return 1.5
+    }
 
     if (item.numberOfShares > 1000) {
       return 1.25;
@@ -79,6 +82,8 @@ export const calculateItemWeight = (item: TransactionHistoryItem) => {
 
     return 1;
   }
+
+  throw new Error("item STATUS unrecognised");
 }
 
 main();
