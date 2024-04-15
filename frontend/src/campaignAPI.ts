@@ -7,6 +7,7 @@ export interface Campaign {
     industry: string; // "Fintech",
     mainImage: string; // "https://storage.googleapis.com/birchal-uploads/d89b5f34-70a1-4c3a-9d96-326595d135af/d89b5f34-70a1-4c3a-9d96-326595d135af@640x360.jpeg",
     logoImage: string; // "https://storage.googleapis.com/birchal-uploads/551503d0-8229-42cf-b0a3-a040ed823224/551503d0-8229-42cf-b0a3-a040ed823224@300x300.png",
+    logoColour?: string;
     coverImage: string; // "https://storage.googleapis.com/birchal-uploads/702c5e3e-8156-4f98-97fe-95aed688ca61/702c5e3e-8156-4f98-97fe-95aed688ca61@1920x1080.jpeg"
   },
   type: "EOI" | "OFFER"; // "EOI"

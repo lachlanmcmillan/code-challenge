@@ -24,6 +24,10 @@ const Tile = ({ item }: TileProps) => {
     ? 'Expressions of Interest'
     : item.type;
 
+  const logoBackgroundStyle = !!item.company.logoColour
+    ? { backgroundColor: item.company.logoColour }
+    : {};
+
   return (
     <div className="tile">
       <div className="top">
@@ -34,10 +38,12 @@ const Tile = ({ item }: TileProps) => {
       </div>
 
       <div className="middle">
-        <img
-          className="company-logo-image"
-          src={item.company.logoImage}
-        />
+        <div className="company-logo-container" style={{...logoBackgroundStyle}}>
+          <img
+            className="company-logo-image"
+            src={item.company.logoImage}
+          />
+        </div>
 
         <div className="company-text">
           <span className="company-name">{item.company.name}</span>
