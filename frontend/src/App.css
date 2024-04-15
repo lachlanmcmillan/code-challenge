@@ -202,3 +202,48 @@ footer > div {
 .campaigns {
   padding: 2rem;
 }
+
+.campaign-tiles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.campaign-tiles .tile { 
+  border: 1px solid green; 
+}
+
+.campaign-tiles .tile .top { 
+  border: 1px solid red; 
+}
+
+.campaign-tiles .tile .top .company-main-image { 
+  border: 1px solid blue; 
+}
+
+.campaign-tiles .tile .middle .company-logo-image { 
+  border: 1px solid purple; 
+}
+
+.campaign-tiles .tile .middle .company-text {
+  border: 1px solid salmon;
+} 
+
+.campaign-tiles .tile .middle .company-text .company-name { 
+  color: brown;
+}
+.campaign-tiles .tile .middle .company-text .company-industry { 
+  color: #333;
+}
+
+.campaign-tiles .tile .bottom {
+  border: 1px solid grey;
+}
+
+.campaign-tiles .tile .bottom .type-text {
+  color: greenyellow;
+}
+
+.campaign-tiles .tile .bottom .closing-text { 
+  color: powderblue;
+}

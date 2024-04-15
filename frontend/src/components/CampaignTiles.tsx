@@ -14,8 +14,41 @@ interface TileProps {
   item: Campaign;
 }
 
-const Tile = ({ item }: TileProps) => (
-  <div>{item.company.name}</div>
-)
+const Tile = ({ item }: TileProps) => {
+  const closingText =  item.status === "CLOSED"
+    ? `Closed at ${item.closeDateFormatted}`
+    : `Closes in ${Math.floor(item.closingInDays)} days` 
+
+  return (
+    <div className="tile">
+      <div className="top">
+        <img 
+          className="company-main-image"
+          src={item.company.mainImage}
+        />
+      </div>
+
+      <div className="middle">
+        <img
+          className="company-logo-image"
+          src={item.company.logoImage}
+        />
+
+        <div className="company-text">
+          <span className="company-name">{item.company.name}</span>
+          <br />
+          <span className="company-industry">{item.company.industry}</span>
+        </div>
+
+      </div>
+
+      <div className="bottom">
+        <span className="type-text">{item.type}</span>
+        <br />
+        <span className="closing-text">{closingText}</span>
+      </div>
+    </div>
+  )
+}
 
 export default CampaignTiles;
