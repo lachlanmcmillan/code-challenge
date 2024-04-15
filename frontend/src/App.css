@@ -10,6 +10,10 @@ header {
   background-color: var(--blue);
 }
 
+header.companies {
+  background-color: var(--background-dark);
+}
+
 header .inner {
   background-color: white;
   border-bottom-left-radius: 20px;
@@ -114,6 +118,14 @@ button.primary {
 }
 
 footer {
+  background-color: white;
+}
+
+footer.companies {
+  background-color: var(--background-dark);
+}
+
+footer .inner {
   color: white;
   background-color: black;
   border-top-left-radius: 20px;

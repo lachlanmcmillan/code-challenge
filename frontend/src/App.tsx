@@ -15,7 +15,7 @@ const App = () => {
   }, [location]);
   return (
     <>
-      <Header />
+      <Header className={mainClass}/>
       
       <main className={mainClass}>
         <Switch>
@@ -26,7 +26,7 @@ const App = () => {
         </Switch>
       </main>
 
-      <Footer />
+      <Footer className={mainClass} />
     </>
   );
 };

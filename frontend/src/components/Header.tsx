@@ -1,12 +1,16 @@
 import { Link, useLocation } from "wouter";
 
-const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header = ({ className }: HeaderProps) => {
   const [, setLocation] = useLocation();
   const browseCompanies = () => {
     setLocation('/companies');
   }
   return (
-    <header>
+    <header className={className}>
       <div className="inner">
         <nav>
           <Link className="brand" href="/">
