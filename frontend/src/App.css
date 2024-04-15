@@ -7,6 +7,10 @@
 }
 
 header {
+  background-color: var(--blue);
+}
+
+header .inner {
   background-color: white;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
