@@ -248,7 +248,7 @@ footer > div {
   height: 40px;
   flex: 1;
   max-width: 33%;
-  background-color: var(--background-dark);
+  background-color: var(--neutral);
   border-radius: 12px;
   display: flex;
   justify-content: center;
