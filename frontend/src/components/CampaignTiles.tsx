@@ -15,9 +15,14 @@ interface TileProps {
 }
 
 const Tile = ({ item }: TileProps) => {
-  const closingText =  item.status === "CLOSED"
+  const closingText = item.status === "CLOSED"
     ? `Closed at ${item.closeDateFormatted}`
-    : `Closes in ${Math.floor(item.closingInDays)} days` 
+    : `Closes in ${Math.floor(item.closingInDays)} days`; 
+
+
+  const typeText = item.type === 'EOI'
+    ? 'Expressions of Interest'
+    : item.type;
 
   return (
     <div className="tile">
@@ -43,7 +48,7 @@ const Tile = ({ item }: TileProps) => {
       </div>
 
       <div className="bottom">
-        <span className="type-text">{item.type}</span>
+        <span className="type-text">{typeText}</span>
         <br />
         <span className="closing-text">{closingText}</span>
       </div>
