@@ -35,3 +35,4 @@ Both options would alleviate the very long css selectors (eg. ".company-tiles .c
 
 3. Any other improvements or changes you would make?
 
+I would need to investigate how frequently the companies and campaigns JSON is updated. There may be benefit from using a static-site-generator to improve load times and performance.
