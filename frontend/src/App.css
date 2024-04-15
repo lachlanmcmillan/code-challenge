@@ -243,6 +243,7 @@ footer > div {
   height: 80px;
   padding: 1rem;
   gap: 1rem;
+  align-items: center;
 }
 
 .campaign-tiles .tile .middle .company-logo-container { 
